@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sıla Göktaş'ın Galaktik Macerası</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 20px;
+            background-image: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" opacity="0.3"><circle cx="50" cy="50" r="1" fill="white"/></svg>');
+            background-size: 3px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .meteor {
+            animation: meteorFly 3s infinite linear;
+            font-size: 50px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .height-display {
+            font-size: 30px;
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            display: inline-block;
+            background: #000;
+            transition: transform 0.3s;
+        }
+
+        @keyframes meteorFly {
+            0% { transform: translateX(-100vw) rotate(0deg); }
+            100% { transform: translateX(100vw) rotate(360deg); }
+        }
+
+        .quote {
+            font-size: 24px;
+            margin: 40px;
+            color: #ff69b4;
+            text-shadow: 2px 2px #000;
+        }
+
+        .counter {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        button {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 25px;
+            margin: 20px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        .hidden-message {
+            display: none;
+            font-size: 30px;
+            color: #ff0000;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter" id="counter">Tıklama: 0</div>
+    <div class="container">
+        <h1>🚀 Sıla "Göktaş"ın Galaktik Macerası 🌌</h1>
+        
+        <div class="meteor" onclick="animateMeteor()">☄️ Göktaş ☄️</div>
+        
+        <div class="height-display" onclick="jumpAnimation()">
+            <span id="heightText">158cm</span>
+        </div>
+
+        <button onclick="showSpecialMessage()">Gizli Mesajı Aç</button>
+        
+        <div class="quote" id="specialQuote"></div>
+
+        <div class="hidden-message" id="hiddenMessage">
+            Boyu küçük ama hayalleri büyük!<br>
+            - Joost Klein
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+
+        function animateMeteor() {
+            clickCount++;
+            document.getElementById('counter').textContent = `Tıklama: ${clickCount}`;
+            
+            const meteor = document.querySelector('.meteor');
+            meteor.style.animation = 'none';
+            void meteor.offsetWidth;
+            meteor.style.animation = 'meteorFly 3s infinite linear';
+        }
+
+        function jumpAnimation() {
+            const heightDisplay = document.querySelector('.height-display');
+            heightDisplay.style.transform = 'translateY(-50px)';
+            setTimeout(() => {
+                heightDisplay.style.transform = 'translateY(0)';
+            }, 500);
+        }
+
+        function showSpecialMessage() {
+            document.getElementById('specialQuote').textContent = '"Göktaşlarını yakalayan kızın destansı yolculuğu!"';
+            document.getElementById('hiddenMessage').style.display = 'block';
+            
+            // Arka plan efektleri
+            document.body.style.backgroundImage = 'linear-gradient(45deg, #000000, #1a1a1a)';
+            setTimeout(() => {
+                document.body.style.backgroundImage = 'url("data:image/svg+xml,<svg viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\' opacity=\'0.3\'><circle cx=\'50\' cy=\'50\' r=\'1\' fill=\'white\'/></svg>")';
+            }, 2000);
+        }
+
+        // Rastgele yıldız efekti
+        setInterval(() => {
+            const star = document.createElement('div');
+            star.style.position = 'fixed';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.fontSize = Math.random() * 20 + 10 + 'px';
+            star.textContent = '✨';
+            document.body.appendChild(star);
+            
+            setTimeout(() => {
+                star.remove();
+            }, 1000);
+        }, 500);
+    </script>
+</body>
+</html>
